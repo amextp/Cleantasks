@@ -17,11 +17,11 @@
   --peach:#FF9A3C;--peach-l:#FFF0E0;
   --pink:#F687B3;--pink-l:#FDF2F8;
   --blue:#60A5FA;--blue-l:#EFF6FF;
-  --bg:#F8F7FF;--card:#FFF;
+  --bg:#F0EEFF;--card:#FFF;
   --text:#1A1625;--text2:#6B6580;--text3:#A09AB8;
   --border:#EEEBF8;
-  --r:20px;--r2:14px;
-  --s2:0 2px 12px rgba(100,80,180,.08);
+  --r:26px;--r2:22px;
+  --s2:0 4px 20px rgba(100,80,180,.12);
 }
 html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Nunito',sans-serif;color:var(--text)}
 .app{display:flex;flex-direction:column;height:100%;max-width:480px;margin:0 auto;background:var(--bg)}
@@ -68,7 +68,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Nunito',
 .setup-emoji{font-size:72px;margin-bottom:20px}
 .setup-title{font-family:‘Fraunces’,serif;font-size:28px;font-weight:700;margin-bottom:8px}
 .setup-sub{font-size:15px;color:var(–text2);font-weight:600;margin-bottom:32px;line-height:1.5}
-.setup-input{width:100%;padding:16px;border:2px solid var(–border);border-radius:16px;font-family:‘Nunito’,sans-serif;font-size:16px;font-weight:700;background:var(–card);color:var(–text);outline:none;text-align:center;margin-bottom:12px}
+.setup-input{width:100%;padding:16px;border:2px solid var(–border);border-radius:20px;font-family:‘Nunito’,sans-serif;font-size:16px;font-weight:700;background:var(–card);color:var(–text);outline:none;text-align:center;margin-bottom:12px}
 .setup-input:focus{border-color:var(–lav)}
 .avatar-row{display:flex;gap:10px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
 .avatar-btn{font-size:28px;width:52px;height:52px;border-radius:50%;border:2.5px solid var(–border);background:var(–card);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
@@ -78,7 +78,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Nunito',
 .color-btn.active{border-color:var(–text);transform:scale(1.2)}
 
 /* TODAY */
-.today-hero{margin:0 16px 20px;border-radius:var(–r);padding:22px 20px;color:white;position:relative;overflow:hidden}
+.today-hero{margin:0 16px 20px;border-radius:26px;padding:22px 20px;color:white;position:relative;overflow:hidden}
 .today-hero::before{content:’’;position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:rgba(255,255,255,.1);border-radius:50%}
 .today-hero::after{content:’’;position:absolute;bottom:-20px;left:20px;width:80px;height:80px;background:rgba(255,255,255,.07);border-radius:50%}
 .hero-date{font-size:13px;font-weight:700;opacity:.85;text-transform:uppercase;letter-spacing:.5px}
@@ -88,7 +88,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Nunito',
 .hero-stats{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;font-weight:700;opacity:.9}
 
 /* LEVEL CARD */
-.level-card{margin:0 16px 16px;background:var(–card);border-radius:var(–r2);padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:var(–s2);border:1.5px solid var(–border)}
+.level-card{margin:0 16px 16px;background:var(–card);border-radius:22px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:var(–s2);border:1.5px solid var(–border)}
 .level-avatar{font-size:28px;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .level-info{flex:1;min-width:0}
 .level-name{font-size:14px;font-weight:800}
@@ -98,13 +98,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Nunito',
 .level-pts{font-size:12px;font-weight:800;color:var(–lav)}
 
 /* TASK CARD */
-.task-card{margin:0 16px 8px;background:var(–card);border-radius:var(–r2);padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:var(–s2);border:1.5px solid var(–border);cursor:pointer;transition:all .2s;position:relative;overflow:hidden;-webkit-user-select:none;user-select:none}
+.task-card{margin:0 16px 10px;background:var(–card);border-radius:22px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:var(–s2);border:1.5px solid var(–border);cursor:pointer;transition:all .2s;position:relative;overflow:hidden;-webkit-user-select:none;user-select:none}
 .task-card:active{transform:scale(.97)}
-.task-card.done{opacity:.6}
+.task-card.done{opacity:.55;background:#F8F7FF}
 .task-card.done .task-name{text-decoration:line-through;color:var(–text3)}
 .task-card-ripple{position:absolute;inset:0;background:var(–mint-l);opacity:0;transition:opacity .3s}
 .task-card.done .task-card-ripple{opacity:1}
-.check-btn{width:34px;height:34px;border-radius:50%;border:2.5px solid var(–border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);background:white}
+.check-btn{width:38px;height:38px;border-radius:50%;border:2.5px solid var(–border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);background:white}
 .task-card.done .check-btn{background:var(–mint);border-color:var(–mint);transform:scale(1.1)}
 .check-icon{opacity:0;transform:scale(0);transition:all .3s cubic-bezier(.34,1.56,.64,1);color:white;font-weight:900;font-size:15px}
 .task-card.done .check-icon{opacity:1;transform:scale(1)}
@@ -112,12 +112,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Nunito',
 .task-name{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .task-meta{font-size:11px;color:var(–text2);font-weight:600;margin-top:1px}
 .task-actions{display:flex;gap:4px;flex-shrink:0}
-.task-action-btn{width:28px;height:28px;border-radius:8px;border:none;background:var(–bg);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.task-action-btn{width:32px;height:32px;border-radius:50%;border:none;background:var(–bg);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .task-action-btn:active{transform:scale(.9)}
 .task-cat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 
 /* PARTNER MINI */
-.partner-row{margin:0 16px 16px;background:var(–card);border-radius:var(–r2);padding:14px 16px;box-shadow:var(–s2);border:1.5px solid var(–border)}
+.partner-row{margin:0 16px 16px;background:var(–card);border-radius:22px;padding:14px 16px;box-shadow:var(–s2);border:1.5px solid var(–border)}
 .partner-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .partner-title{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(–text3)}
 .partner-users{display:flex;gap:12px}
@@ -172,7 +172,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Nunito',
 .cat-pill{flex-shrink:0;padding:8px 14px;border-radius:50px;border:1.5px solid var(–border);background:var(–card);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
 .cat-pill.active{background:var(–lav);border-color:var(–lav);color:white}
 .cat-pill:active{transform:scale(.95)}
-.manage-task-card{margin:0 16px 8px;background:var(–card);border-radius:var(–r2);padding:13px 14px;display:flex;align-items:center;gap:10px;box-shadow:var(–s2);border:1.5px solid var(–border)}
+.manage-task-card{margin:0 16px 10px;background:var(–card);border-radius:22px;padding:13px 14px;display:flex;align-items:center;gap:10px;box-shadow:var(–s2);border:1.5px solid var(–border)}
 .mtc-toggle{width:44px;height:26px;border-radius:13px;background:var(–border);position:relative;flex-shrink:0;transition:background .25s;cursor:pointer}
 .mtc-toggle.on{background:var(–mint)}
 .mtc-thumb{position:absolute;width:20px;height:20px;border-radius:50%;background:white;top:3px;left:3px;transition:transform .25s cubic-bezier(.34,1.56,.64,1);box-shadow:0 2px 6px rgba(0,0,0,.2)}
@@ -185,15 +185,15 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Nunito',
 .fab:active{transform:scale(.9)}
 
 /* STATS */
-.streak-card{margin:0 16px 16px;border-radius:var(–r);padding:20px;position:relative;overflow:hidden;background:linear-gradient(135deg,#FFE66D,#FF9A3C)}
+.streak-card{margin:0 16px 16px;border-radius:26px;padding:20px;position:relative;overflow:hidden;background:linear-gradient(135deg,#FFE66D,#FF9A3C)}
 .streak-card::after{content:‘🔥’;position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:52px;opacity:.3}
 .streak-num{font-family:‘Fraunces’,serif;font-size:48px;font-weight:700;line-height:1}
 .streak-label{font-size:14px;font-weight:800;color:rgba(26,22,37,.7);margin-top:2px}
 .stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px 16px}
-.stat-card{background:var(–card);border-radius:var(–r2);padding:16px;box-shadow:var(–s2);border:1.5px solid var(–border)}
+.stat-card{background:var(–card);border-radius:22px;padding:16px;box-shadow:var(–s2);border:1.5px solid var(–border)}
 .stat-num{font-family:‘Fraunces’,serif;font-size:32px;font-weight:700;line-height:1}
 .stat-label{font-size:11px;font-weight:700;color:var(–text2);margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
-.week-chart{margin:0 16px 16px;background:var(–card);border-radius:var(–r2);padding:16px;box-shadow:var(–s2);border:1.5px solid var(–border)}
+.week-chart{margin:0 16px 16px;background:var(–card);border-radius:22px;padding:16px;box-shadow:var(–s2);border:1.5px solid var(–border)}
 .chart-title{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(–text3);margin-bottom:12px}
 .chart-bars{display:flex;gap:8px;align-items:flex-end;height:80px}
 .chart-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
@@ -211,10 +211,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Nunito',
 .badge-pts{font-size:10px;color:var(–lav);font-weight:700;margin-top:2px}
 
 /* PARTNER SCREEN */
-.partner-code-card{margin:0 16px 16px;background:linear-gradient(135deg,var(–lav),var(–pink));border-radius:var(–r);padding:20px;color:white;text-align:center}
+.partner-code-card{margin:0 16px 16px;background:linear-gradient(135deg,var(–lav),var(–pink));border-radius:26px;padding:20px;color:white;text-align:center}
 .partner-code{font-family:‘Fraunces’,serif;font-size:36px;font-weight:700;letter-spacing:4px;margin:8px 0}
 .partner-code-sub{font-size:12px;opacity:.85;font-weight:700}
-.partner-connected{margin:0 16px 16px;background:var(–card);border-radius:var(–r2);padding:16px;box-shadow:var(–s2);border:1.5px solid var(–border)}
+.partner-connected{margin:0 16px 16px;background:var(–card);border-radius:22px;padding:16px;box-shadow:var(–s2);border:1.5px solid var(–border)}
 
 /* NOTIF */
 .notif-card{margin:0 16px 12px;background:var(–card);border-radius:var(–r2);padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:var(–s2);border:1.5px solid var(–border)}
@@ -230,12 +230,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Nunito',
 .sheet-title{font-family:‘Fraunces’,serif;font-size:22px;font-weight:700;padding:0 20px;margin-bottom:20px}
 .sheet-field{padding:0 20px;margin-bottom:16px}
 .sheet-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(–text3);margin-bottom:8px}
-.sheet-input,.sheet-select{width:100%;padding:13px 16px;border:1.5px solid var(–border);border-radius:14px;font-family:‘Nunito’,sans-serif;font-size:15px;font-weight:600;background:var(–card);color:var(–text);outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+.sheet-input,.sheet-select{width:100%;padding:13px 16px;border:1.5px solid var(–border);border-radius:18px;font-family:‘Nunito’,sans-serif;font-size:15px;font-weight:600;background:var(–card);color:var(–text);outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
 .sheet-input:focus,.sheet-select:focus{border-color:var(–lav)}
 .sheet-row{display:flex;gap:10px;align-items:center;padding:0 20px;margin-bottom:16px}
 .custom-n{width:70px;text-align:center;flex-shrink:0}
 .sheet-actions{display:flex;gap:10px;padding:20px 20px 0}
-.btn{padding:13px 18px;border-radius:14px;border:none;font-family:‘Nunito’,sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:all .2s;flex:1;text-align:center}
+.btn{padding:14px 20px;border-radius:50px;border:none;font-family:‘Nunito’,sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:all .2s;flex:1;text-align:center}
 .btn:active{transform:scale(.97)}
 .btn-primary{background:linear-gradient(135deg,var(–lav),#c084fc);color:white;box-shadow:0 4px 16px rgba(167,139,250,.4)}
 .btn-ghost{background:var(–border);color:var(–text2)}
