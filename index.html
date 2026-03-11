@@ -970,15 +970,14 @@ function renderToday(){
   document.getElementById('today-pending-label').style.display=pendingTasks.length?'flex':'none';
   document.getElementById('today-done-label').style.display=doneTasks.length?'flex':'none';
   document.getElementById('today-empty').style.display=todayTasks.length===0?'block':'none';
-  document.getElementById('today-pending-list').innerHTML=pendingTasks.map(t=>taskCardHTML(t,now,false)).join('');
-  document.getElementById('today-done-list').innerHTML=doneTasks.map(t=>taskCardHTML(t,now,true)).join('');
+  renderTaskList(document.getElementById('today-pending-list'), pendingTasks, now, 'today');
+  renderTaskList(document.getElementById('today-done-list'), doneTasks, now, 'today');
 }
 
-function taskCardHTML(task,date,done,ctx){
+function taskCardHTML(task,date,done){
   const ds=dateStr(date);
   const col=CAT_COLORS[task.cat]||'#A78BFA';
-  const fn=ctx==='cal'?`calToggleTask`:`toggleTask`;
-  return`<div class="task-card ${done?'done':''}" id="tc-${task.id}" onclick="${fn}('${ds}','${task.id}')">
+  return`<div class="task-card ${done?'done':''}" data-id="${task.id}" data-ds="${ds}">
     <div class="task-card-ripple"></div>
     <div class="check-btn"><span class="check-icon">✓</span></div>
     <div class="task-info">
@@ -986,28 +985,41 @@ function taskCardHTML(task,date,done,ctx){
       <div class="task-meta">${CATS[task.cat]?.label||''} · ${recLabel(task)}</div>
     </div>
     <div class="task-actions">
-      <div class="task-action-btn" onclick="event.stopPropagation();openReschedule('${task.id}','${ds}')" title="Déplacer">📆</div>
+      <div class="task-action-btn task-reschedule" data-id="${task.id}" data-ds="${ds}">📆</div>
     </div>
     <div class="task-cat-dot" style="background:${col}"></div>
   </div>`;
 }
 
-function toggleTask(ds,id){
-  const date=new Date(ds+'T12:00:00');
-  const was=isDone(date,id);
-  setDoneDB(date,id,!was);
-  if(!was){confetti();checkBadgesAndXP();}
-  renderToday();
+function renderTaskList(container, taskList, date, ctx){
+  container.innerHTML = taskList.map(t=>taskCardHTML(t,date,isDone(date,t.id))).join('');
+  container.querySelectorAll('.task-card').forEach(card=>{
+    card.addEventListener('touchend', function(e){
+      if(e.target.closest('.task-reschedule')) return;
+      e.preventDefault();
+      const id=this.dataset.id, ds=this.dataset.ds;
+      const d=new Date(ds+'T12:00:00');
+      const was=isDone(d,id);
+      setDoneDB(d,id,!was);
+      if(!was){confetti();checkBadgesAndXP();}
+      if(ctx==='today')renderToday(); else renderCal();
+    });
+    card.addEventListener('click', function(e){
+      if(e.target.closest('.task-reschedule')) return;
+      const id=this.dataset.id, ds=this.dataset.ds;
+      const d=new Date(ds+'T12:00:00');
+      const was=isDone(d,id);
+      setDoneDB(d,id,!was);
+      if(!was){confetti();checkBadgesAndXP();}
+      if(ctx==='today')renderToday(); else renderCal();
+    });
+    const rsBtn=card.querySelector('.task-reschedule');
+    if(rsBtn){
+      rsBtn.addEventListener('touchend',function(e){e.preventDefault();e.stopPropagation();openReschedule(this.dataset.id,this.dataset.ds);});
+      rsBtn.addEventListener('click',function(e){e.stopPropagation();openReschedule(this.dataset.id,this.dataset.ds);});
+    }
+  });
 }
-function calToggleTask(ds,id){
-  const date=new Date(ds+'T12:00:00');
-  const was=isDone(date,id);
-  setDoneDB(date,id,!was);
-  if(!was){confetti();checkBadgesAndXP();}
-  renderCal();
-}
-window.toggleTask=toggleTask;
-window.calToggleTask=calToggleTask;
 
 // ── RESCHEDULE ─────────────────────────────────────────────────────────
 function openReschedule(id,ds){
@@ -1115,7 +1127,7 @@ function renderCalDayTasks(){
   const dt=tasks.filter(t=>occursOn(t,d));
   const c=document.getElementById('cal-day-tasks');
   if(!dt.length){c.innerHTML=`<div class="empty-state"><div class="empty-emoji">😴</div><div class="empty-text">Rien à faire</div></div>`;return;}
-  c.innerHTML=dt.map(t=>taskCardHTML(t,d,isDone(d,t.id),'cal')).join('');
+  renderTaskList(c, dt, d, 'cal');
 }
 window.setCalView=setCalView;window.calNavigate=calNavigate;window.selectCalDay=selectCalDay;
 
