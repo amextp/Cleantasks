@@ -807,9 +807,9 @@ async function saveTasks(){
 }
 
 async function setDoneDB(date,id,val){
-  const key=dKeySafe(date,id).replace(/[.#$\/\[\]]/g,'_');
+  const key=dKeySafe(date,id);
   const path=`users/${profile.uid}/completions/${key}`;
-  if(val)completions[dKeySafe(date,id)]=true;else delete completions[dKeySafe(date,id)];
+  if(val)completions[key]=true;else delete completions[key];
   showSync('syncing','Sauvegarde…');
   try{
     if(val)await set(ref(db,path),true);else await remove(ref(db,path));
